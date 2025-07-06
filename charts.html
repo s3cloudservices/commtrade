@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Trading Pie Chart</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f9f9f9;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-top: 50px;
+    }
+
+    .chart-container {
+      width: 400px;
+      height: 400px;
+    }
+
+    h2 {
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Carbon Portfolio Allocation</h2>
+  <div class="chart-container">
+    <canvas id="tradingPieChart"></canvas>
+  </div>
+
+  <script>
+    const ctx = document.getElementById('tradingPieChart').getContext('2d');
+    const tradingPieChart = new Chart(ctx, {
+      type: 'pie',
+      data: {
+        labels: ['Renewable Energy Credits', 'Forestry Projects', 'Industrial Offsets', 'Methane Capture'],
+        datasets: [{
+          label: 'Portfolio Allocation',
+          data: [35, 25, 20, 20], // Percentages or weights
+          backgroundColor: [
+            '#4CAF50',
+            '#FFC107',
+            '#2196F3',
+            '#FF5722'
+          ],
+          borderWidth: 1
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: {
+            position: 'bottom'
+          },
+          tooltip: {
+            callbacks: {
+              label: function(context) {
+                return context.label + ': ' + context.parsed + '%';
+              }
+            }
+          }
+        }
+      }
+    });
+  </script>
+
+</body>
+</html>
